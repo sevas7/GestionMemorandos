@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</head>
+
+<ui:composition template="templateSGM.xhtml">
+
+	<ui:define name="title">Inicio</ui:define>
+
+	<ui:define name="west">
+		<h:form id="izquierda">
+			<br />
+			<center>
+				<p:splitButton value="Nuevo" icon="ui-icon-mail-closed">
+					<p:menuitem value="Comunicación Interna" style="font-size: 0.8em"
+						action="crearComJ1.xhtml" ajax="false" icon="ui-icon-triangle-1-e" />
+					<p:menuitem value="Memorando" style="font-size: 0.8em"
+						action="crearComJ.xhtml" ajax="false" icon="ui-icon-triangle-1-e" />
+					<p:menuitem value="Circular" style="font-size: 0.8em"
+						action="crearCircular.xhtml" ajax="false"
+						icon="ui-icon-triangle-1-e" />
+					<p:menuitem value="Mensaje" style="font-size: 0.8em"
+						action="crearMensaje.xhtml" ajax="false"
+						icon="ui-icon-triangle-1-e" />
+				</p:splitButton>
+			</center>
+			<br />
+			<p:separator style="width: 95%; height: 1px" />
+
+			<p:menu style="width:133px;font-size: 1.0em">
+
+				<p:menuitem value="Recibidos"
+					action="#{comunicacionBean.volverBandejaRecibidos}" ajax="false" />
+				<p:menuitem value="Enviados" action="inicioJefeBSalida.xhtml"
+					ajax="false" />
+				<p:menuitem value="Registrados"
+					action="inicioJefeBRegistrados.xhtml" ajax="false" />
+
+			</p:menu>
+			<p:separator style="width: 95%; height: 1px" />
+
+			<p:menu style="width:133px;font-size: 1.0em">
+				<p:menuitem value="Elaborados" action="inicioJefeBElaborados.xhtml"
+					ajax="false" />
+				<p:menuitem value="Construidos"
+					action="inicioJefeBConstruccion.xhtml" ajax="false" />
+				<p:menuitem value="Redactados" action="inicioJefeBRedactados.xhtml"
+					ajax="false" />
+				<p:menuitem value="Listos para enviar"
+					action="inicioJefeBAprobados.xhtml" ajax="false" />
+			</p:menu>
+
+			<p:separator style="width: 95%; height: 1px" />
+			<br />
+			<p:dataTable var="contacto"
+				value="#{loginBean.contactosUnidadOrganizacional}"
+				rowKey="#{contacto.idContacto}" paginator="false" rows="5"
+				selection="#{comunicacionBean.selectedContacto}"
+				selectionMode="single" id="mailboxContacto">
+
+				<p:ajax event="rowSelect"
+					listener="#{comunicacionBean.seleccionarContactoMailbox}" />
+
+				<p:column id="flagCom">
+					<h:outputText value="-" style="background-color:green;"
+						rendered="#{comunicacionBean.verificarPertenenciaContactoAUnaComunicacion(contacto.idContacto)}" />
+
+				</p:column>
+
+				<p:column id="estadoCom">
+					<h:outputText value="#{contacto.nombre}" />
+
+				</p:column>
+
+			</p:dataTable>
+
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="centro">
+		<ui:insert name="cuerpo">
+			<p:layout style="min-width:400px;min-height:900px;" id="layout">
+
+				<p:layoutUnit position="north" resizable="false" size="88">
+					<h:form id="panelNorte">
+						<p:spacer width="2" height="15px" />
+						<div style="float: left">
+							<p:inputText id="buscar" value="#{loginBean.busqueda}"
+								style="width:550px" />
+							<p:watermark value="Buscar Comunicación" for="buscar" />
+							<p:spacer width="2" height="0" />
+							<p:commandButton id="buscarMemo" icon="ui-icon-search"
+								style="width:52px;height:31px"
+								action="#{loginBean.buscarComunicacion}" ajax="false" />
+						</div>
+
+						<div style="float: right">
+							<p:menuButton value="#{loginBean.contacto.nombre}">
+								<p:menuitem value=" Ayuda" icon="ui-icon-help"
+									style="font-size: 0.8em" />
+								<p:menuitem value=" Cambiar Password" icon="ui-icon-key"
+									style="font-size: 0.8em" action="camPW.xhtml" ajax="false" />
+								<p:menuitem value=" Cerrar Sesión" icon="ui-icon-circle-close"
+									style="font-size: 0.8em"
+									action="#{comunicacionBean.cerrarSesion}" ajax="false" />
+							</p:menuButton>
+						</div>
+						<br />
+						<br />
+						<p:spacer width="2" height="15px" />
+
+						<p:splitButton value="Más">
+							<p:menuitem value="Crear Expediente" style="font-size: 0.8em"
+								onclick="dlg.show()" type="button" icon="ui-icon-triangle-1-e" />
+						</p:splitButton>
+						<p:commandButton id="actualizar" icon="ui-icon-arrowrefresh-1-e"
+							action="#{comunicacionBean.actualizar}" ajax="false" />
+						<p:tooltip for="actualizar" value="Actualizar" showEffect="fade"
+							hideEffect="fade" style="font-size: 0.8em" />
+
+					</h:form>
+
+					<p:dialog id="dialog" header="Nuevo Expediente" widgetVar="dlg"
+						appendToBody="true" resizable="false" position="center"
+						style="font-size: 0.8em">
+						<h:form>
+							<h:panelGrid columns="2">
+
+								<h:outputText value="Nombre: " />
+								<p:inputText id="asunto"
+									value="#{comunicacionBean.expediente.asunto}" required="true" />
+
+								<h:outputText value="Expediente: " />
+
+								<p:selectOneMenu value="#{comunicacionBean.expediente2}"
+									effect="fade" style="width:166px">
+									<f:selectItems value="#{comunicacionBean.expedientes}" var="e"
+										itemLabel="#{e.asunto}" id="expediente" />
+									<f:converter converterId="selectItemObjectConverter"></f:converter>
+								</p:selectOneMenu>
+
+							</h:panelGrid>
+							<center>
+								<p:commandButton value="Crear" ajax="false"
+									action="#{comunicacionBean.registrarExpediente}" />
+							</center>
+						</h:form>
+					</p:dialog>
+
+				</p:layoutUnit>
+
+				<p:layoutUnit position="center">
+					<ui:insert name="bandeja">
+						<h:form id="form">
+							<p:growl id="growl" sticky="true" life="1500" />
+
+							<p:dataTable var="comunicacion"
+								value="#{loginBean.listaComunicaciones}"
+								rowKey="#{comunicacion.idDocumento}" paginator="true"
+								paginatorPosition="bottom" rows="20"
+								selection="#{comunicacionBean.selectedComunicacion}"
+								selectionMode="single" id="bandejaEntrada"
+								draggableColumns="true">
+
+								<f:facet name="header">  
+           Recibidos
+        </f:facet>
+
+								<p:ajax event="rowSelect"
+									listener="#{comunicacionBean.leerComunicacion}" />
+
+								<p:column headerText="Leido" id="estadoCom">
+									<h:outputText value="#{comunicacion.leido}" />
+
+								</p:column>
+
+								<p:column id="model" filterBy="#{comunicacion.contacto.nombre}"
+									filterMatchMode="contains">
+									<f:facet name="header">
+										<h:outputText value="Remitente:" />
+									</f:facet>
+									<h:outputText value="#{comunicacion.contacto.nombre}" />
+								</p:column>
+
+								<p:column headerText="Asunto" id="year">
+									<h:outputText value="#{comunicacion.asunto}" />
+								</p:column>
+
+								<p:column headerText="Comunicación" id="tipoCom"
+									sortBy="#{comunicacion.tipo}">
+									<h:outputText value="#{comunicacion.tipo}" />
+								</p:column>
+
+								<p:column headerText="Fecha" id="fechaEnvio">
+									<h:outputText value="#{comunicacion.fechaCreacion}" />
+								</p:column>
+							</p:dataTable>
+							<p:poll interval="3" listener="#{loginBean.actualizar}"
+								update="bandejaEntrada" />
+						</h:form>
+					</ui:insert>
+				</p:layoutUnit>
+			</p:layout>
+		</ui:insert>
+	</ui:define>
+
+</ui:composition>
+</html>

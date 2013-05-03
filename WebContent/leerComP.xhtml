@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="inicioWorker.xhtml">
+	<ui:define name="title">
+	    Comunicación
+	</ui:define>
+
+	<ui:define name="cuerpo">
+
+		<p:layout style="min-width:400px;min-height:800px;" id="layout">
+
+			<p:layoutUnit position="north" resizable="false" size="85">
+				<h:form id="panelNorte">
+					<div style="float: left">
+						<br /> <br />
+						<p:commandButton value="Atrás" id="atrasCom"
+							icon="ui-icon-arrowthick-1-w" action="inicioWorker.xhtml"
+							ajax="false" />
+					</div>
+					<div style="float: right">
+
+						<p:menuButton value="#{loginBean.contacto.nombre}">
+							<p:menuitem value=" Ayuda" icon="ui-icon-help"
+								style="font-size: 0.8em" />
+							<p:menuitem value=" Cambiar Password" icon="ui-icon-key"
+								style="font-size: 0.8em" action="camPWS.xhtml" ajax="false" />
+							<p:menuitem value=" Cerrar Sesión" icon="ui-icon-circle-close"
+								style="font-size: 0.8em" action="#{comunicacionBean.cerrarSesion}"
+								ajax="false" />
+						</p:menuButton>
+						<br />
+						<p:spacer width="0" height="30" />
+						<p:inputText id="buscar" value="#{loginBean.busqueda}" />
+						<p:watermark value="Buscar Comunicación" for="buscar" />
+						<p:spacer width="2" height="0" />
+						<p:commandButton id="buscarMemo" icon="ui-icon-search"
+							style="width:52px;height:31px"
+							action="#{loginBean.buscarComunicacion}" ajax="false" />
+					</div>
+
+				</h:form>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center" size="1000">
+			
+				<h:form id="comunicaPDF">
+				
+					<div style="float: right">
+						<h:outputText value="#{comunicacionBean.expedientesCom}"
+							id="expediente" />
+						<p:tooltip for="expediente" value="Expediente de la comunicación"
+							showEffect="fade" hideEffect="fade" style="font-size: 0.8em" />
+						<br />
+					</div>
+					<div style="float: left">
+						<p:commandLink id="downloadLink" value="Anexo" ajax="false"
+							icon="ui-icon-arrowthichk-s"
+							action="#{comunicacionBean.fileDownloader(comunicacionBean.selectedC.anexo)}"
+							rendered="#{comunicacionBean.selectedC.anexo != null}">
+						</p:commandLink>
+					</div>
+					<br />
+					
+					<center>
+						<iframe src="#{comunicacionBean.rutaComunicacion}" width="95%"
+							height="850" frameborder="0" scrolling="auto"
+							id="comunicacionEmb"> </iframe>
+					</center>
+					
+				</h:form>
+			</p:layoutUnit>
+
+		</p:layout>
+
+	</ui:define>
+
+</ui:composition>
+</html>

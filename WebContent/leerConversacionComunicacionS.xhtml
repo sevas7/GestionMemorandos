@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</head>
+
+<ui:composition template="edicionSecre.xhtml">
+
+	<ui:define name="centroConversacion">
+
+		<p:tabView id="tabView" activeIndex="1">
+
+			<p:tab id="tab1" title="Comunicación" titleStyle="font-size: 0.8em">
+
+				<h:form id="crearComuniJefe">
+					<p:growl id="growl" sticky="true" />
+					<div style="float: left">
+						<p:commandButton value="Elaborar"
+							action="#{comunicacionBean.elaborarComunicacion}"
+							id="elaborarCom" icon="ui-icon-disk" ajax="false" update="growl" />
+					</div>
+					<div style="float: right">
+						<center>
+							<h:outputText
+								value="#{comunicacionBean.selectedComunicacion.tipo} - #{comunicacionBean.selectedComunicacion.estadocomunicacion.estado}" />
+						</center>
+					</div>
+
+					<br />
+					<br />
+					<p:separator style="width: 99%; height: 0.3px" />
+					<h:panelGrid columns="2">
+
+						<h:outputText value="Para: " />
+
+						<p:inputText style="width:400px;height:24px"
+							value="#{comunicacionBean.destinatariosC}" />
+
+						<h:outputText value="Asunto: " />
+						<p:inputText id="asunto" style="width:400px;height:24px"
+							value="#{comunicacionBean.selectedComunicacion.asunto}"
+							required="true" />
+					</h:panelGrid>
+
+					<p:separator style="width: 95%; height: 1px" />
+
+					<center>
+						<p:editor id="cuerpo"
+							value="#{comunicacionBean.selectedComunicacion.contenidoCom}"
+							width="970" height="500" requiredMessage="Debe ingresar texto" />
+					</center>
+					<!--  <br />
+					<p:fieldset legend="Observaciones" toggleable="true"
+						toggleSpeed="500"
+						style="width:960px;height:190px;font-size: 0.8em">
+						<p:inputTextarea rows="12" cols="155"
+							value="#{comunicacionBean.comentario}" id="comentario">
+						</p:inputTextarea>
+						<p:watermark value="Sin observaciones" for="comentario" />
+					</p:fieldset>-->
+				</h:form>
+
+			</p:tab>
+
+			<p:tab id="tab2" title="Attachment" titleStyle="font-size: 0.8em">
+
+				<h:form>
+					<p:commandButton id="atras" icon="ui-icon-arrowthick-1-w"
+						value="Atrás" action="#{comunicacionBean.atras}" ajax="false" />
+				</h:form>
+				<p:spacer width="2" height="10" />
+
+				<div style="overflow: auto; max-height: 500px;">
+
+					<h:form id="conversacion">
+						<p:dataList value="#{comunicacionBean.conversacion}" var="mensaje"
+							multiple="true" dynamic="">
+							<b> #{mensaje.contacto.nombre} </b>
+							<br />
+							<div style="float: left">
+								<h:outputText value="#{mensaje.contenidoCom}" />
+								<br />
+								<p:commandLink id="downloadLink" value="Anexo" ajax="false"
+									icon="ui-icon-arrowthichk-s"
+									action="#{comunicacionBean.fileDownloader(mensaje.anexo)}"
+									rendered="#{mensaje.anexo != null}">
+								</p:commandLink>
+								
+							</div>
+							<div style="float: right">
+								<h:outputText value="#{mensaje.fechaCorta}"
+									style="font-size:11px" />
+
+							</div>
+							<br />
+							<br /><br />
+						</p:dataList>
+					</h:form>
+
+				</div>
+
+				<p:spacer width="2" height="5" />
+
+				<h:form id="responderMensaje">
+
+					<p:editor id="editor"
+						value="#{comunicacionBean.comunicacion.contenidoCom}" width="951"
+						height="250" required="true"
+						requiredMessage="Debe ingresar el contenido del mensaje" />
+
+					<p:commandButton value="Enviar" id="respuestaMensaje"
+						icon="ui-icon-mail-closed"
+						action="#{comunicacionBean.responderMensajeDeUnaComunicacion}"
+						ajax="false" />
+
+				</h:form>
+
+			</p:tab>
+
+		</p:tabView>
+
+	</ui:define>
+
+</ui:composition>
+</html>

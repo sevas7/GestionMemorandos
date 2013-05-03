@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="inicioSecre.xhtml">
+	<ui:define name="title">
+	    Comunicación
+	</ui:define>
+
+	<ui:define name="cuerpo">
+
+		<p:layout style="min-width:400px;min-height:800px;" id="layout">
+
+			<p:layoutUnit position="north" resizable="false" size="85">
+				<h:form id="panelNorte">
+					<div style="float: left">
+						<br /> <br />
+						<p:commandButton value="Enviar" id="nuevaCom"
+							icon="ui-icon-mail-closed"
+							action="#{comunicacionBean.enviarComunicacionAprobada}"
+							ajax="false" />
+					</div>
+					<div style="float: right">
+
+						<p:menuButton value="#{loginBean.contacto.nombre}">
+							<p:menuitem value=" Ayuda" icon="ui-icon-help"
+								style="font-size: 0.8em" />
+							<p:menuitem value=" Cambiar Password" icon="ui-icon-key"
+								style="font-size: 0.8em" action="camPWS.xhtml" ajax="false" />
+							<p:menuitem value=" Cerrar Sesión" icon="ui-icon-circle-close"
+								style="font-size: 0.8em" action="#{comunicacionBean.cerrarSesion}"
+								ajax="false" />
+						</p:menuButton>
+						<br />
+						<p:spacer width="0" height="30" />
+						<p:inputText id="buscar" value="#{loginBean.busqueda}" />
+						<p:watermark value="Buscar Memorando" for="buscar" />
+						<p:spacer width="2" height="0" />
+						<p:commandButton id="buscarMemo" icon="ui-icon-search"
+							style="width:52px;height:31px"
+							action="#{loginBean.buscarComunicacion}" ajax="false" />
+					</div>
+
+				</h:form>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center" size="1000">
+
+				<ui:insert name="centroConversacion">
+
+					<p:tabView id="tabView" activeIndex="#{comunicacionBean.tab}">
+
+						<p:tab id="tab1" title="Comunicación"
+							titleStyle="font-size: 0.8em">
+
+							<h:form id="comunicaPDF">
+
+								<div style="float: right">
+									<h:outputText value="#{comunicacionBean.expedientesCom}"
+										id="expediente" />
+									<p:tooltip for="expediente"
+										value="Expediente de la comunicación" showEffect="fade"
+										hideEffect="fade" style="font-size: 0.8em" />
+
+									<br />
+								</div>
+								<div style="float: left">
+									<p:commandLink id="downloadLink" value="Anexo" ajax="false"
+										icon="ui-icon-arrowthichk-s"
+										action="#{comunicacionBean.fileDownloader(comunicacionBean.selectedC.anexo)}"
+										rendered="#{comunicacionBean.selectedC.anexo != null}">
+									</p:commandLink>
+								</div>
+								<br />
+
+								<p:growl id="growl" sticky="true" life="1500" />
+								<center>
+									<iframe src="#{comunicacionBean.rutaComunicacion}" width="95%"
+										height="800" frameborder="0" scrolling="auto"
+										id="comunicacionEmb"> </iframe>
+								</center>
+							</h:form>
+
+
+
+						</p:tab>
+
+						<p:tab id="tab2" title="Attachment" titleStyle="font-size: 0.8em">
+
+							<h:form id="conversacion" enctype="multipart/form-data">
+								<p:growl id="growl" showDetail="false" sticky="true" />
+
+								<p:commandButton value="Crear Conversación" id="crearCvsacion"
+									icon="ui-icon-mail-closed" ajax="false" update="growl"
+									onclick="dlg.show()" type="button" />
+								<br />
+								<br />
+								<p:dataTable var="conversacion" id="conversaciones"
+									draggableColumns="true" rowKey="#{conversacion.idConversacion}"
+									paginator="true" paginatorPosition="bottom" rows="20"
+									value="#{comunicacionBean.listaConversaciones}"
+									selection="#{comunicacionBean.selectedConversacion}"
+									selectionMode="single">
+
+									<f:facet name="header">  Conversaciones </f:facet>
+
+									<p:ajax event="rowSelect"
+										listener="#{comunicacionBean.leerConversacion}" />
+
+									<p:column headerText="Contacto" id="contactoConversacion">
+										<h:outputText value="#{conversacion.nombreContacto}" />
+
+									</p:column>
+
+									<p:column headerText="Asunto" id="estadoCom">
+										<h:outputText value="#{conversacion.asunto}" />
+
+									</p:column>
+
+									<p:column headerText="Fecha" id="fechaConversacion">
+										<h:outputText value="#{conversacion.fechaConversacion}" />
+
+									</p:column>
+
+								</p:dataTable>
+
+							</h:form>
+
+							<p:dialog id="dialog" header="Nuevo Mensaje" widgetVar="dlg"
+								appendToBody="true" resizable="false" position="center"
+								style="font-size: 0.8em">
+								<h:form>
+
+									<br />
+									<h:panelGrid columns="2">
+
+										<h:outputText value="Para: " />
+
+										<p:autoComplete value="#{comunicacionBean.destinatarios}"
+											completeMethod="#{comunicacionBean.obtenerListaContactos}"
+											multiple="true" required="true"
+											requiredMessage="Seleccione al menos un contacto" />
+
+										<h:outputText value="Asunto: " />
+										<p:inputText id="asunto" style="width:390px;height:24px"
+											value="#{comunicacionBean.comunicacion.asunto}"
+											required="true"
+											requiredMessage="Debe ingresar el asunto de la comunicación" />
+
+										<h:outputText value="                    " />
+										<h:form enctype="multipart/form-data">
+											<p:fileUpload auto="true" label="Archivo adjunto"
+												fileUploadListener="#{comunicacionBean.upload}"
+												mode="advanced" multiple="true"
+												style="width:400px;font-size: 0.7em" />
+										</h:form>
+									</h:panelGrid>
+
+									<p:separator style="width: 95%; height: 1px" />
+
+									<center>
+										<p:editor id="editor"
+											value="#{comunicacionBean.comunicacion.contenidoCom}"
+											width="500" height="200" required="true"
+											requiredMessage="Debe ingresar el contenido del mensaje" />
+									</center>
+
+									<p:commandButton value="Enviar"
+										action="#{comunicacionBean.sendMessage}" id="enviarMsj"
+										icon="ui-icon-mail-closed" ajax="false" update="growl" />
+
+								</h:form>
+							</p:dialog>
+
+						</p:tab>
+
+					</p:tabView>
+
+				</ui:insert>
+
+			</p:layoutUnit>
+
+		</p:layout>
+
+	</ui:define>
+
+</ui:composition>
+</html>

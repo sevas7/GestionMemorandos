@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="inicioJefe.xhtml">
+	<ui:define name="title">
+	    Conversación
+	</ui:define>
+
+	<ui:define name="cuerpo">
+
+		<p:layout style="min-width:400px;min-height:800px;" id="layout">
+
+			<p:layoutUnit position="north" resizable="false" size="85">
+				<h:form id="formNorte">
+					<div style="float: left">
+						<br /> <br />
+						<p:commandButton value="Responder" id="nuevoMemo"
+							icon="ui-icon-mail-closed" action="responderMensaje.xhtml"
+							ajax="false" />
+					</div>
+
+					<div style="float: right">
+
+						<p:menuButton value="#{loginBean.contacto.nombre}">
+
+							<p:menuitem value=" Ayuda" icon="ui-icon-help"
+								style="font-size: 0.8em" />
+							<p:menuitem value=" Cambiar Password" icon="ui-icon-key"
+								style="font-size: 0.8em" action="camPW.xhtml" ajax="false" />
+							<p:menuitem value=" Cerrar Sesión" icon="ui-icon-circle-close"
+								style="font-size: 0.8em" action="#{comunicacionBean.cerrarSesion}"
+								ajax="false" />
+						</p:menuButton>
+						<br />
+						<p:spacer width="0" height="30" />
+						<p:inputText id="buscar" value="#{loginBean.busqueda}" />
+						<p:watermark value="Buscar Comunicación" for="buscar" />
+						<p:spacer width="2" height="0" />
+						<p:commandButton id="buscarMemo" icon="ui-icon-search"
+							style="width:52px;height:31px"
+							action="#{loginBean.buscarComunicacion}" ajax="false" />
+					</div>
+				</h:form>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center" size="1000">
+
+				<h:form id="conversacion">
+
+					<div style="overflow: auto; height: 850px">
+
+						<p:accordionPanel value="#{comunicacionBean.conversacion}"
+							var="mensaje" multiple="true" dynamic="">
+							<p:tab title="#{mensaje.contacto.nombre}">
+								<h:panelGrid columns="2" cellpadding="10">
+									<h:outputText value="Mensaje: " />
+									<h:outputText value="#{mensaje.contenidoCom}"
+										style="font-weight: bold" />
+
+									<h:outputText value="Fecha " />
+									<h:outputText value="#{mensaje.fechaCorta}"
+										style="font-weight: bold" />
+
+									<p:commandLink id="downloadLink" value="Anexo" ajax="false"
+										icon="ui-icon-arrowthichk-s"
+										action="#{comunicacionBean.fileDownloader(mensaje.anexo)}"
+										rendered="#{mensaje.anexo != null}">
+									</p:commandLink>
+
+								</h:panelGrid>
+							</p:tab>
+						</p:accordionPanel>
+
+					</div>
+				</h:form>
+
+			</p:layoutUnit>
+
+		</p:layout>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

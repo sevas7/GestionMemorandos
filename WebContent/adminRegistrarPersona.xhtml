@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="inicioAdmin.xhtml">
+	<ui:define name="title">
+	Registrar Actor
+	</ui:define>
+	<ui:define name="centroAdmin">
+		<br />
+		<h:form id="agregarActor">
+			<p:growl id="growl" showDetail="false" sticky="true" />
+			<h:panelGrid columns="2">
+
+				<h:outputText value="Cedula: " />
+				<p:inputText id="cedula"
+					value="#{administracionBean.actor.idQuien}" required="true"
+					validatorMessage="Es necesario ingresar una Cédula" />
+				<h:outputText value="Nombre: " />
+				<p:inputText id="nombre"
+					value="#{administracionBean.actor.nombre}" required="true" />
+				<h:outputText value="Apellido: " />
+				<p:inputText id="apellido"
+					value="#{administracionBean.actor.apellido}" required="true" />
+				<h:outputText value="Email: " />
+				<p:inputText id="email" value="#{administracionBean.actor.email}"
+					required="true" />
+				<h:outputText value="Rol: " />
+				<h:selectManyListbox value="#{administracionBean.selectedRol}"
+					id="roles">
+					<f:selectItems value="#{administracionBean.roles}" var="rol"
+						itemLabel="#{rol.nombre} - #{rol.unidadorganizacional.nombre}" />
+					<f:converter converterId="selectItemObjectConverter" />
+				</h:selectManyListbox>
+			</h:panelGrid>
+			<br />
+			<center>
+				<p:commandButton value="Registrar"
+					action="#{administracionBean.registrarActor}" id="regActor"
+					icon="ui-icon-disk" ajax="false" />
+			</center>
+			<p:messages showDetail="false"  />
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

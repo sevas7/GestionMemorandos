@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="gestionMemorandos">
+		<jta-data-source>jdbc/sysinfo</jta-data-source>
+		<class>vo.Actividad</class>
+		<class>vo.Actor</class>
+		<class>vo.Actorrol</class>
+		<class>vo.Agenda</class>
+		<class>vo.Armario</class>
+		<class>vo.Autordocumento</class>
+		<class>vo.Calendario</class>
+		<class>vo.Circular</class>
+		<class>vo.Ciudad</class>
+		<class>vo.Comunicacion</class>
+		<class>vo.Comunicaciondestinatario</class>
+		<class>vo.Contacto</class>
+		<class>vo.Contactoquien</class>
+		<class>vo.Contenido</class>
+		<class>vo.Copia</class>
+		<class>vo.Deposito</class>
+		<class>vo.Direccion</class>
+		<class>vo.Directorio</class>
+		<class>vo.Disco</class>
+		<class>vo.Documento</class>
+		<class>vo.Estadoactividad</class>
+		<class>vo.Estadocomunicacion</class>
+		<class>vo.Expediente</class>
+		<class>vo.Expedientedocumento</class>
+		<class>vo.Fecha</class>
+		<class>vo.Fechacalendario</class>
+		<class>vo.Guia</class>
+		<class>vo.Item</class>
+		<class>vo.Listachequeo</class>
+		<class>vo.Memorando</class>
+		<class>vo.Orientacion</class>
+		<class>vo.Palabraclave</class>
+		<class>vo.Palabradocumento</class>
+		<class>vo.Paquete</class>
+		<class>vo.Plantilla</class>
+		<class>vo.Producto</class>
+		<class>vo.Quien</class>
+		<class>vo.Rol</class>
+		<class>vo.Seriedocumental</class>
+		<class>vo.Tablaretenciondocumental</class>
+		<class>vo.Tipodocumento</class>
+		<class>vo.Unidadorganizacional</class>
+		<class>vo.Version</class>
+		<class>vo.Edificio</class>
+		<class>vo.Mensaje</class>
+		<class>vo.Conversacion</class>
+		<class>vo.Grupo</class>
+		<class>vo.GrupoContacto</class>
+		<class>vo.Observacion</class>
+		<class>vo.Comunciacioninterna</class>
+		<class>vo.Anexo</class>
+	</persistence-unit>
+</persistence>

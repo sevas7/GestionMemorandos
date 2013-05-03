@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="comunicacionMEMO" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="74e974ed-0f70-49e6-8d84-202548744ea7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="comunicacion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="remitente" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="destinatarios" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="concopia" class="java.lang.String"/>
+	<parameter name="logouq" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT c.idComunicacion, d.fechaCreacion, c.asunto, c.contenidoCom
+FROM comunicacion c INNER JOIN documento d ON c.idComunicacion=d.idDocumento
+WHERE d.idDocumento=$P{comunicacion}]]>
+	</queryString>
+	<field name="idComunicacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechaCreacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="asunto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="contenidoCom" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="116" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="9e81a52d-a77a-4c60-aed3-cead8bf08b4c" x="189" y="33" width="246" height="24" forecolor="#009933"/>
+				<textElement>
+					<font fontName="Arial" size="17" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD DEL QUINDÍO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cf06ef64-6445-4e7c-86d2-7586a0c41c90" x="208" y="57" width="163" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[COMUNICACIÓN INTERNA   NO.]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="95784f9e-0d24-468b-afaa-427f683405dc" x="371" y="57" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{comunicacion}]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement uuid="3f0aa5c3-7f86-4c41-84a3-72d4d0196945" x="36" y="17" width="73" height="85"/>
+				<imageExpression><![CDATA[$P{logouq}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d2d4fd49-45bb-4a2e-9d3d-8b74bcae53b2" x="36" y="0" width="63" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="433a309a-1680-438a-a7d8-6b7ee19bb24f" x="99" y="0" width="146" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaCreacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="105" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="95e625b7-a9c5-4c7a-86f6-894aea137947" x="36" y="5" width="63" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PARA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="282695f2-b8fa-47c5-b52a-0f09bd099463" x="36" y="51" width="63" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8a9694be-0261-44dd-bbd3-441ca6bde097" x="36" y="75" width="63" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASUNTO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="3b79b80d-7534-44d9-8249-063c7fde8860" x="99" y="75" width="436" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asunto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="04ddf20d-bd4a-47f4-8994-60a5c01fa665" x="99" y="51" width="436" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{remitente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="94358803-1c82-4feb-b410-85e10636bf9c" x="99" y="5" width="436" height="46"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{destinatarios}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="465">
+			<textField>
+				<reportElement uuid="f7244a1f-fe9f-42b4-b6b5-39cd9d66d188" x="36" y="0" width="498" height="431" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contenidoCom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="318908ab-70d9-4d51-9e23-f64cbdc1df0d" x="36" y="431" width="498" height="34"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{concopia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="5dda1957-caab-4cdf-9fe8-2e56b305f1a0" x="173" y="25" width="317" height="17" forecolor="#009933"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Carrera 15 Calle 12 Norte - Armenia, Quindío                       ]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="a770a47d-9811-4a3b-b1da-baa4a31b8d1f" x="0" y="21" width="555" height="1" forecolor="#009933"/>
+			</line>
+			<staticText>
+				<reportElement uuid="0dcf37fe-7fa3-4897-bc75-e72a0bc9fa11" x="157" y="42" width="281" height="20" forecolor="#009933"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[www.uniquindio.edu.co - Email: uq@uniquindio.edu.co]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="0fcb767d-98ba-4951-a02d-3bf1563376cf" x="513" y="42" width="21" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

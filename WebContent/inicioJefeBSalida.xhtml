@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="inicioJefe.xhtml">
+	<ui:define name="bandeja">
+
+		<h:form id="form">
+			<p:growl id="growl" sticky="true" />
+
+			<p:dataTable var="comunicacion" value="#{loginBean.bandejaDeSalida}"
+				rowKey="#{comunicacion.idDocumento}" paginator="true"
+				paginatorPosition="bottom" rows="20"
+				selection="#{comunicacionBean.selectedComunicacion}"
+				selectionMode="single" id="bandejaSalida">
+
+				<f:facet name="header">  
+            Enviados
+        </f:facet>
+
+				<p:ajax event="rowSelect"
+					listener="#{comunicacionBean.leerComunicacion}" />
+
+				<p:column headerText="Para" id="paraDes"
+					filterBy="#{comunicacion.destinatariosCom}"
+					filterMatchMode="contains">
+					<h:outputText value="#{comunicacion.destinatariosCom}" />
+				</p:column>
+
+				<p:column headerText="Asunto" id="year"
+					filterBy="#{comunicacion.asunto}" filterMatchMode="contains">
+					<h:outputText value="#{comunicacion.asunto}" />
+				</p:column>
+
+				<p:column headerText="Comunicación" id="tipoCom">
+					<h:outputText value="#{comunicacion.tipo}" />
+				</p:column>
+
+				<p:column headerText="Fecha" id="fechaEnvio">
+					<h:outputText value="#{comunicacion.fechaCreacion}" />
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

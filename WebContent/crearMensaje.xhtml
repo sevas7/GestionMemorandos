@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</head>
+
+<ui:composition template="inicioJefe.xhtml">
+	<ui:define name="title">
+	    Nuevo Mensaje
+	</ui:define>
+
+	<ui:define name="cuerpo">
+		<p:layout style="min-width:400px;min-height:800px;" id="layout">
+
+			<p:layoutUnit position="north" resizable="false" closable="false"
+				collapsible="false" size="45">
+				<h:form id="norteJefe">
+					<div style="float: right">
+						<p:menuButton value="#{loginBean.contacto.nombre}">
+							<p:menuitem value=" Ayuda" icon="ui-icon-help"
+								style="font-size: 0.8em" />
+							<p:menuitem value=" Cambiar Password" icon="ui-icon-key"
+								style="font-size: 0.8em" action="camPWS.xhtml" ajax="false" />
+							<p:menuitem value=" Cerrar Sesión" icon="ui-icon-circle-close"
+								style="font-size: 0.8em" action="#{comunicacionBean.cerrarSesion}"
+								ajax="false" />
+						</p:menuButton>
+					</div>
+				</h:form>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center" size="1000">
+				<h:form id="crearMensaje" enctype="multipart/form-data">
+					<p:growl id="growl" showDetail="false" sticky="true" />
+
+					<p:commandButton value="Enviar"
+						action="#{comunicacionBean.enviarMensaje}" id="enviarMsj"
+						icon="ui-icon-mail-closed" ajax="false" update="growl" />
+					<br />
+					<p:separator style="width: 99%; height: 0.3px" />
+					<h:panelGrid columns="2">
+
+						<h:outputText value="Para: " />
+
+						<p:autoComplete value="#{comunicacionBean.destinatarios}"
+							completeMethod="#{comunicacionBean.obtenerListaContactos}"
+							multiple="true" required="true"
+							requiredMessage="Seleccione al menos un contacto" />
+
+						<h:outputText value="Asunto: " />
+						<p:inputText id="asunto" style="width:391px;height:24px"
+							value="#{comunicacionBean.comunicacion.asunto}" required="true"
+							requiredMessage="Debe ingresar el asunto del mensaje" />
+
+						<h:outputText value="Palabras clave: " />
+
+						<p:autoComplete value="#{comunicacionBean.selectedPalabraClave}"
+							completeMethod="#{comunicacionBean.obtenerPalabrasClaves}"
+							multiple="true" />
+
+						<h:outputText value="                    " />
+						<h:form enctype="multipart/form-data">
+							<p:fileUpload auto="true" label="Archivo adjunto"
+								fileUploadListener="#{comunicacionBean.upload}" mode="advanced"
+								multiple="true" style="width:400px;font-size: 0.7em" />
+						</h:form>
+					</h:panelGrid>
+
+					<p:messages showDetail="false" />
+
+
+					<p:separator style="width: 95%; height: 1px" />
+
+					<center>
+						<p:editor id="editor"
+							value="#{comunicacionBean.comunicacion.contenidoCom}" width="970"
+							height="500" required="true"
+							requiredMessage="Debe ingresar el contenido del mensaje" />
+					</center>
+
+				</h:form>
+			</p:layoutUnit>
+		</p:layout>
+	</ui:define>
+
+	<ui:define name="east">
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

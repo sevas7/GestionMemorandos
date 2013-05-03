@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title><ui:insert name="title">Sistema de Gestión Memorandos</ui:insert></title>
+	<style type="text/css">
+.ui-layout-north .ui-layout-unit-content {
+	overflow: hidden;
+}
+
+.ui-layout-center .ui-layout-unit-content {
+	overflow: hidden;
+}
+
+.ui-layout-west .ui-layout-unit-content {
+	overflow: hidden;
+}
+
+</style>
+</h:head>
+
+<h:body>
+	<font size="2px"> <p:layout id="pagina"
+			style="width:auto;height:1100px; align=center">
+
+			<p:layoutUnit position="north" size="112" resizable="false"
+				closable="false" collapsible="false">
+
+				<center>
+					<a href="http://www.uniquindio.edu.co"> <h:graphicImage
+							url="#{resource['banner_uq.jpg']}" alt="Universidad del Quindío" />
+					</a>
+					<h:form>
+						<p:growl id="growl" sticky="true" life="1500" />
+						<p:poll interval="3" listener="#{loginBean.notificarComunicacion}"
+							update="growl" />
+					</h:form>
+				</center>
+
+			</p:layoutUnit>
+
+
+			<p:layoutUnit position="west" size="150" 
+				resizable="false" closable="false" collapsible="false">
+				<ui:insert name="west">
+				
+				</ui:insert>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="east" size="150" resizable="false"
+				closable="false" collapsible="false" effect="false">
+				<ui:insert name="east">
+				 
+				</ui:insert>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center">
+				<ui:insert name="centro">
+
+				</ui:insert>
+			</p:layoutUnit>
+
+		</p:layout>
+	</font>
+</h:body>
+
+</html>

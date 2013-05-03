@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</head>
+
+<ui:composition template="templateSGM.xhtml">
+	<ui:define name="title">
+	    Elaborar Comunicación
+	</ui:define>
+
+	<ui:define name="west">
+		<h:form id="izquierda">
+			<br />
+			<center>
+				<p:splitButton value="Nuevo" icon="ui-icon-mail-closed">
+					<p:menuitem value="Comunicación Interna" style="font-size: 0.8em"
+						action="crearComS1.xhtml" ajax="false" icon="ui-icon-triangle-1-e" />
+					<p:menuitem value="Memorando" style="font-size: 0.8em"
+						action="crearComS.xhtml" ajax="false" icon="ui-icon-triangle-1-e" />
+					<p:menuitem value="Circular" style="font-size: 0.8em"
+						action="crearComS.xhtml" ajax="false" icon="ui-icon-triangle-1-e" />
+					<p:menuitem value="Mensaje" style="font-size: 0.8em"
+						action="crearMensajeS.xhtml" ajax="false"
+						icon="ui-icon-triangle-1-e" />
+				</p:splitButton>
+			</center>
+			<br />
+			<p:separator style="width: 95%; height: 1px" />
+
+			<p:menu style="width:133px;font-size: 1.0em">
+
+				<p:menuitem value="Recibidos" action="inicioSecre.xhtml"
+					ajax="false" />
+				<p:menuitem value="Enviados" action="inicioSecreBSalida.xhtml"
+					ajax="false" />
+				<p:menuitem value="Registrados"
+					action="inicioSecreBRegistrados.xhtml" ajax="false" />
+
+			</p:menu>
+			<p:separator style="width: 95%; height: 1px" />
+
+			<p:menu style="width:133px;font-size: 1.0em">
+				<p:menuitem value="Elaborados" action="inicioSecreBElaborados.xhtml"
+					ajax="false" />
+				<p:menuitem value="Construidos"
+					action="inicioSecreBConstruccion.xhtml" ajax="false" />
+				<p:menuitem value="Redactados" action="inicioSecreBRedactados.xhtml"
+					ajax="false" />
+				<p:menuitem value="Listos para enviar"
+					action="inicioSecreBAprobados.xhtml" ajax="false" />
+			</p:menu>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="centro">
+
+		<p:layout style="min-width:400px;min-height:800px;" id="layout">
+
+			<p:layoutUnit position="north" resizable="false" closable="false"
+				collapsible="false" size="45">
+				<h:form id="norteJefe">
+					<div style="float: right">
+						<p:menuButton value="#{loginBean.contacto.nombre}">
+							<p:menuitem value=" Ayuda" icon="ui-icon-help"
+								style="font-size: 0.8em" />
+							<p:menuitem value=" Cambiar Password" icon="ui-icon-key"
+								style="font-size: 0.8em" action="camPWS.xhtml" ajax="false" />
+							<p:menuitem value=" Cerrar Sesión" icon="ui-icon-circle-close"
+								style="font-size: 0.8em" action="#{comunicacionBean.cerrarSesion}" ajax="false" />
+						</p:menuButton>
+					</div>
+				</h:form>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center" size="1000">
+
+				<ui:insert name="centroConversacion">
+
+					<p:tabView id="tabView" activeIndex="#{comunicacionBean.tab}">
+
+						<p:tab id="tab1" title="Comunicación"
+							titleStyle="font-size: 0.8em">
+
+							<h:form id="crearComuniJefe">
+								<p:growl id="growl" sticky="true" />
+
+								<div style="float: left">
+
+									<p:commandButton value="Elaborar"
+										action="#{comunicacionBean.elaborarComunicacion}" id="regMemo"
+										icon="ui-icon-disk" ajax="false" update="growl" />
+
+									<p:commandButton value="Enviar"
+										action="#{comunicacionBean.enviarComunicacion}"
+										id="enviarCom1" icon="ui-icon-mail-closed" ajax="false"
+										update="growl" />
+								</div>
+								<div style="float: right">
+									<center>
+										<h:outputText
+											value="#{comunicacionBean.selectedComunicacion.tipo} - #{comunicacionBean.selectedComunicacion.estadocomunicacion.estado}" />
+									</center>
+								</div>
+
+								<br />
+								<br />
+								<p:separator style="width: 99%; height: 0.3px" />
+								<h:panelGrid columns="2">
+
+									<h:outputText value="Para: " />
+
+									<h:outputText style="width:390px;height:24px"
+										value="#{comunicacionBean.destinatariosC}" required="true" />
+
+									<h:outputText value="De: " />
+
+									<h:outputText style="width:390px;height:24px"
+										value="#{comunicacionBean.selectedComunicacion.contacto.nombre}"
+										required="true" />
+
+									<h:outputText value="Asunto: " />
+									<p:inputText id="asunto" style="width:390px;height:24px"
+										value="#{comunicacionBean.selectedComunicacion.asunto}"
+										required="true" />
+
+									<h:outputText value=" " />
+									<h:form enctype="multipart/form-data">
+										<p:fileUpload auto="true" label="Archivo adjunto"
+											fileUploadListener="#{comunicacionBean.upload}"
+											mode="advanced" multiple="true"
+											style="width:400px;font-size: 0.7em" />
+									</h:form>
+
+								</h:panelGrid>
+
+								<p:separator style="width: 95%; height: 1px" />
+
+								<center>
+									<p:editor id="cuerpo"
+										value="#{comunicacionBean.selectedComunicacion.contenidoCom}"
+										width="970" height="500" requiredMessage="Debe ingresar texto" />
+								</center>
+								<br />
+							</h:form>
+
+						</p:tab>
+
+						<p:tab id="tab2" title="Attachment" titleStyle="font-size: 0.8em">
+
+							<h:form id="conversacion" enctype="multipart/form-data">
+								<p:growl id="growl" showDetail="false" sticky="true" />
+
+								<p:commandButton value="Crear Conversación" id="crearCvsacion"
+									icon="ui-icon-mail-closed" ajax="false" update="growl"
+									onclick="dlg.show()" type="button" />
+
+								<p:commandButton id="actualizar" icon="ui-icon-arrowrefresh-1-e"
+									action="#{comunicacionBean.listarConversaciones}" ajax="false" />
+								<p:tooltip for="actualizar" value="Actualizar" showEffect="fade"
+									hideEffect="fade" style="font-size: 0.8em" />
+								<br />
+								<br />
+								<p:dataTable var="conversacion"
+									value="#{comunicacionBean.listaConversaciones}"
+									rowKey="#{conversacion.idConversacion}" paginator="true"
+									paginatorPosition="bottom" rows="20"
+									selection="#{comunicacionBean.selectedConversacion}"
+									selectionMode="single" id="conversacionesCom"
+									draggableColumns="true">
+
+									<p:ajax event="rowSelect"
+										listener="#{comunicacionBean.leerConversacion}" />
+
+									<p:column headerText="Contacto" id="contactoConversacion">
+										<h:outputText value="#{conversacion.nombreContacto}" />
+
+									</p:column>
+
+									<p:column headerText="Asunto" id="estadoCom">
+										<h:outputText value="#{conversacion.asunto}" />
+
+									</p:column>
+
+									<p:column headerText="Fecha" id="fechaConversacion">
+										<h:outputText value="#{conversacion.fechaConversacion}" />
+
+									</p:column>
+
+								</p:dataTable>
+
+							</h:form>
+
+							<p:dialog id="dialog" header="Nuevo Mensaje" widgetVar="dlg"
+								appendToBody="true" resizable="false" position="center"
+								style="font-size: 0.8em">
+								<h:form>
+
+									<br />
+									<h:panelGrid columns="2">
+
+										<h:outputText value="Para: " />
+
+										<p:autoComplete value="#{comunicacionBean.destinatarios}"
+											completeMethod="#{comunicacionBean.obtenerListaContactos}"
+											multiple="true" required="true"
+											requiredMessage="Seleccione al menos un contacto"
+											style="font-size: 0.8em" />
+
+										<h:outputText value="Asunto: " />
+										<p:inputText id="asunto" style="width:390px;height:24px"
+											value="#{comunicacionBean.comunicacion.asunto}"
+											required="true"
+											requiredMessage="Debe ingresar el asunto de la comunicación" />
+
+										<h:outputText value="                    " />
+										<h:form enctype="multipart/form-data">
+											<p:fileUpload auto="true" label="Archivo adjunto"
+												fileUploadListener="#{comunicacionBean.upload}"
+												mode="advanced" multiple="true"
+												style="width:400px;font-size: 0.7em" />
+										</h:form>
+									</h:panelGrid>
+
+									<p:separator style="width: 95%; height: 1px" />
+
+									<center>
+										<p:editor id="editor"
+											value="#{comunicacionBean.comunicacion.contenidoCom}"
+											width="500" height="200" required="true"
+											requiredMessage="Debe ingresar el contenido del mensaje" />
+									</center>
+
+									<p:commandButton value="Enviar"
+										action="#{comunicacionBean.sendMessage}"
+										icon="ui-icon-mail-closed" ajax="false" />
+
+								</h:form>
+							</p:dialog>
+
+						</p:tab>
+
+					</p:tabView>
+
+				</ui:insert>
+
+			</p:layoutUnit>
+		</p:layout>
+	</ui:define>
+
+</ui:composition>
+</html>

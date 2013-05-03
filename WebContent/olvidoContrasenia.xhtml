@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templateSGM.xhtml">
+	<ui:define name="title">
+	    Restablecer la Contraseña 
+	</ui:define>
+
+	<ui:define name="centro">
+		<p:layout style="min-width:400px;min-height:800px;" id="layout">
+
+			<p:layoutUnit position="north" resizable="false" size="45">
+				<div style="float: left">
+					<h:form id="atras">
+						<p:commandButton value="Atrás" id="atras"
+							icon="ui-icon-arrowthick-1-w" action="loging.xhtml"
+							ajax="false" />
+					</h:form>
+				</div>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center" size="1000">
+				<br />
+
+				<br />
+				<center>
+					<p:panel header="Nueva Contraseña" style="width:300px">
+						<h:form id="olvidoContrasenia">
+							<p:growl id="growl" sticky="true" showDetail="false" />
+							<h:outputText value="Nombre de usuario: " />
+							<p:inputText id="userna" required="true"
+								value="#{loginBean.contacto.username}" requiredMessage="En necesario ingresar el nombre de usuario" />
+
+							<p:commandButton value="Enviar"
+								action="#{loginBean.enviarContrasenia}" id="enviarPass"
+								ajax="false" update="growl" />
+						</h:form>
+						<p:messages showDetail="false" />
+					</p:panel>
+				</center>
+			</p:layoutUnit>
+		</p:layout>
+	</ui:define>
+</ui:composition>
+</html>

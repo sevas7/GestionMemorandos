@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</head>
+
+<ui:composition template="templateSGM.xhtml">
+
+	<ui:define name="title">Inicio</ui:define>
+
+	<ui:define name="west">
+		<h:form id="izquierda">
+			<br />
+
+			<center>
+				<p:splitButton value="Nuevo" icon="ui-icon-mail-closed">
+					<p:menuitem value="Comunicación Interna" style="font-size: 0.8em"
+						action="crearComW.xhtml" ajax="false" icon="ui-icon-triangle-1-e" />
+					<p:menuitem value="Mensaje" style="font-size: 0.8em"
+						action="crearMensajeP.xhtml" ajax="false"
+						icon="ui-icon-triangle-1-e" />
+				</p:splitButton>
+			</center>
+			<br />
+			<p:separator style="width: 95%; height: 1px" />
+
+			<p:menu style="width:133px;font-size: 1.0em">
+
+				<p:menuitem value="Recibidos" action="inicioWorker.xhtml"
+					ajax="false" />
+				<p:menuitem value="Enviados" action="inicioWorkerBSalida.xhtml"
+					ajax="false" />
+
+			</p:menu>
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="centro">
+		<ui:insert name="cuerpo">
+			<p:layout style="min-width:400px;min-height:710px;" id="layout">
+
+				<p:layoutUnit position="north" resizable="false" size="85">
+					<h:form id="panelNorte">
+						<div style="float: left">
+							<br /> <br />
+							<p:commandButton id="actualizar" icon="ui-icon-arrowrefresh-1-e"
+								action="#{comunicacionBean.actualizar}" ajax="false" />
+							<p:tooltip for="actualizar" value="Actualizar" showEffect="fade"
+								hideEffect="fade" style="font-size: 0.8em" />
+
+						</div>
+						<div style="float: right">
+
+							<p:menuButton value="#{loginBean.contacto.nombre}">
+								<p:menuitem value=" Ayuda" icon="ui-icon-help"
+									style="font-size: 0.8em" />
+								<p:menuitem value=" Cambiar Password" icon="ui-icon-key"
+									style="font-size: 0.8em" action="camPWS.xhtml" ajax="false" />
+								<p:menuitem value=" Cerrar Sesión" icon="ui-icon-circle-close"
+									style="font-size: 0.8em"
+									action="#{comunicacionBean.cerrarSesion}" ajax="false" />
+							</p:menuButton>
+							<br />
+							<p:spacer width="0" height="30" />
+							<p:inputText id="buscar" value="#{loginBean.busqueda}" />
+							<p:watermark value="Buscar Comunicación" for="buscar" />
+							<p:spacer width="2" height="0" />
+							<p:commandButton id="buscarMemo" icon="ui-icon-search"
+								style="width:52px;height:31px"
+								action="#{loginBean.buscarComunicacion}" ajax="false" />
+						</div>
+
+					</h:form>
+				</p:layoutUnit>
+
+				<p:layoutUnit position="center">
+					<ui:insert name="bandeja">
+						<h:form id="form">
+							<p:growl id="growl" sticky="true" />
+
+							<p:dataTable var="comunicacion"
+								value="#{loginBean.listaComunicaciones}"
+								rowKey="#{comunicacion.idDocumento}" paginator="true"
+								paginatorPosition="bottom" rows="20"
+								selection="#{comunicacionBean.selectedComunicacion}"
+								selectionMode="single" id="bandejaEntrada">
+
+								<f:facet name="header">  
+           Recibidos
+        </f:facet>
+
+								<p:ajax event="rowSelect"
+									listener="#{comunicacionBean.leerComunicacion}" />
+
+								<p:column headerText="Leido" id="estadoCom">
+									<h:outputText value="#{comunicacion.leido}" />
+								</p:column>
+
+								<p:column headerText="Remitente" id="model"
+									filterBy="#{comunicacion.contacto.nombre}"
+									filterMatchMode="contains">
+									<h:outputText value="#{comunicacion.contacto.nombre}" />
+								</p:column>
+
+								<p:column headerText="Asunto" id="year">
+									<h:outputText value="#{comunicacion.asunto}" />
+								</p:column>
+
+								<p:column headerText="Comunicación" id="tipoCom"
+									sortBy="#{comunicacion.tipo}">
+									<h:outputText value="#{comunicacion.tipo}" />
+								</p:column>
+
+								<p:column headerText="Fecha" id="fechaEnvio">
+									<h:outputText value="#{comunicacion.fechaCreacion}" />
+								</p:column>
+							</p:dataTable>
+							<p:poll interval="3" listener="#{loginBean.actualizar}"
+								update="bandejaEntrada" />
+						</h:form>
+					</ui:insert>
+				</p:layoutUnit>
+			</p:layout>
+		</ui:insert>
+	</ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="inicioAdmin.xhtml">
+	<ui:define name="title">
+	Crear Contacto
+	</ui:define>
+	<ui:define name="centroAdmin">
+		<br />
+		<p:panel header="Nuevo Contacto" style="width:650px"> 
+		<h:form id="crearContacto">
+			<p:growl id="growl" sticky="true" showDetail="false" />
+			<h:panelGrid columns="2">
+
+				<h:outputText value="Quien: " />
+				<h:selectManyListbox value="#{administracionBean.selectedQuien}"
+					id="roles" required="true" >
+					<f:selectItems value="#{administracionBean.quienes}" var="quien"
+						itemLabel="#{quien.idQuien} - #{quien.nombre} - #{quien.descripcion}" />
+					<f:converter converterId="selectItemObjectConverter" />
+				</h:selectManyListbox>
+
+				<h:outputText value="Nombre: " />
+				<p:inputText id="nombre"
+					value="#{administracionBean.contacto.nombre}" required="true" />
+				<h:outputText value="Email: " />
+				<p:inputText id="email" value="#{administracionBean.contacto.email}"
+					required="true" />
+				<h:outputText value="Teléfono: " />
+				<p:inputText id="telefono"
+					value="#{administracionBean.contacto.telefono}" required="true" />
+				<h:outputText value="Username: " />
+				<p:inputText id="username"
+					value="#{administracionBean.contacto.username}" required="true" />
+				<h:outputText value="Password: " />
+				<p:inputText id="pass"
+					value="#{administracionBean.contacto.password}" required="true" />
+				<h:outputText value="Descripción: " />
+				<p:inputText id="descripcion"
+					value="#{administracionBean.contacto.descripcion}" required="true" />
+			</h:panelGrid>
+			<br />
+			<center>
+				<p:commandButton value="Crear"
+					action="#{administracionBean.crearContacto}" id="regContacto"
+					icon="ui-icon-disk" ajax="false" update="growl" />
+			</center>
+			<p:messages showDetail="false"  />
+		</h:form>  
+		</p:panel>
+	</ui:define>
+
+</ui:composition>
+</html>

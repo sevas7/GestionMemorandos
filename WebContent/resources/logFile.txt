@@ -1,0 +1,231 @@
+GRAVE: javax.faces.FacesException: /leerCom.xhtml @47,94 value="#{formBean.selectedMovies}": Target Unreachable, identifier 'formBean' resolved to null
+	at com.sun.faces.lifecycle.ProcessValidationsPhase.execute(ProcessValidationsPhase.java:84)
+	at com.sun.faces.lifecycle.Phase.doPhase(Phase.java:101)
+	at com.sun.faces.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:118)
+	at javax.faces.webapp.FacesServlet.service(FacesServlet.java:312)
+	at org.apache.catalina.core.StandardWrapper.service(StandardWrapper.java:1523)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:279)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:188)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:641)
+	at com.sun.enterprise.web.WebPipeline.invoke(WebPipeline.java:97)
+	at com.sun.enterprise.web.PESessionLockingStandardPipeline.invoke(PESessionLockingStandardPipeline.java:85)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:185)
+	at org.apache.catalina.connector.CoyoteAdapter.doService(CoyoteAdapter.java:325)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:226)
+	at com.sun.enterprise.v3.services.impl.ContainerMapper.service(ContainerMapper.java:165)
+	at com.sun.grizzly.http.ProcessorTask.invokeAdapter(ProcessorTask.java:791)
+	at com.sun.grizzly.http.ProcessorTask.doProcess(ProcessorTask.java:693)
+	at com.sun.grizzly.http.ProcessorTask.process(ProcessorTask.java:954)
+	at com.sun.grizzly.http.DefaultProtocolFilter.execute(DefaultProtocolFilter.java:170)
+	at com.sun.grizzly.DefaultProtocolChain.executeProtocolFilter(DefaultProtocolChain.java:135)
+	at com.sun.grizzly.DefaultProtocolChain.execute(DefaultProtocolChain.java:102)
+	at com.sun.grizzly.DefaultProtocolChain.execute(DefaultProtocolChain.java:88)
+	at com.sun.grizzly.http.HttpProtocolChain.execute(HttpProtocolChain.java:76)
+	at com.sun.grizzly.ProtocolChainContextTask.doCall(ProtocolChainContextTask.java:53)
+	at com.sun.grizzly.SelectionKeyContextTask.call(SelectionKeyContextTask.java:57)
+	at com.sun.grizzly.ContextTask.run(ContextTask.java:69)
+	at com.sun.grizzly.util.AbstractThreadPool$Worker.doWork(AbstractThreadPool.java:330)
+	at com.sun.grizzly.util.AbstractThreadPool$Worker.run(AbstractThreadPool.java:309)
+	at java.lang.Thread.run(Thread.java:662)
+Caused by: javax.el.PropertyNotFoundException: /leerCom.xhtml @47,94 value="#{formBean.selectedMovies}": Target Unreachable, identifier 'formBean' resolved to null
+	at com.sun.faces.facelets.el.TagValueExpression.getType(TagValueExpression.java:93)
+	at com.sun.faces.renderkit.html_basic.MenuRenderer.convertSelectManyValue(MenuRenderer.java:123)
+	at com.sun.faces.renderkit.html_basic.MenuRenderer.getConvertedValue(MenuRenderer.java:313)
+	at org.primefaces.component.selectcheckboxmenu.SelectCheckboxMenuRenderer.getConvertedValue(SelectCheckboxMenuRenderer.java:34)
+	at javax.faces.component.UIInput.getConvertedValue(UIInput.java:1008)
+	at javax.faces.component.UIInput.validate(UIInput.java:934)
+	at javax.faces.component.UIInput.executeValidate(UIInput.java:1189)
+	at javax.faces.component.UIInput.processValidators(UIInput.java:691)
+	at javax.faces.component.UIComponentBase.processValidators(UIComponentBase.java:1080)
+	at javax.faces.component.UIComponentBase.processValidators(UIComponentBase.java:1080)
+	at javax.faces.component.UIComponentBase.processValidators(UIComponentBase.java:1080)
+	at org.primefaces.component.layout.Layout.processValidators(Layout.java:245)
+	at javax.faces.component.UIForm.processValidators(UIForm.java:243)
+	at javax.faces.component.UIComponentBase.processValidators(UIComponentBase.java:1080)
+	at javax.faces.component.UIComponentBase.processValidators(UIComponentBase.java:1080)
+	at org.primefaces.component.layout.Layout.processValidators(Layout.java:245)
+	at javax.faces.component.UIComponentBase.processValidators(UIComponentBase.java:1080)
+	at javax.faces.component.UIComponentBase.processValidators(UIComponentBase.java:1080)
+	at javax.faces.component.UIViewRoot.processValidators(UIViewRoot.java:1180)
+	at com.sun.faces.lifecycle.ProcessValidationsPhase.execute(ProcessValidationsPhase.java:76)
+	... 27 more
+
+ADVERTENCIA: PWC4011: Unable to set request character encoding to UTF-8 from context /sistemaGestionMemorandos, because request parameters have already been read, or ServletRequest.getReader() has already been called
+ADVERTENCIA: PWC4011: Unable to set request character encoding to UTF-8 from context /sistemaGestionMemorandos, because request parameters have already been read, or ServletRequest.getReader() has already been called
+ADVERTENCIA: PWC4011: Unable to set request character encoding to UTF-8 from context /sistemaGestionMemorandos, because request parameters have already been read, or ServletRequest.getReader() has already been called
+ADVERTENCIA: PWC4011: Unable to set request character encoding to UTF-8 from context /sistemaGestionMemorandos, because request parameters have already been read, or ServletRequest.getReader() has already been called
+ADVERTENCIA: PWC4011: Unable to set request character encoding to UTF-8 from context /sistemaGestionMemorandos, because request parameters have already been read, or ServletRequest.getReader() has already been called
+ADVERTENCIA: PWC4011: Unable to set request character encoding to UTF-8 from context /sistemaGestionMemorandos, because request parameters have already been read, or ServletRequest.getReader() has already been called
+ADVERTENCIA: PWC4011: Unable to set request character encoding to UTF-8 from context /sistemaGestionMemorandos, because request parameters have already been read, or ServletRequest.getReader() has already been called
+ADVERTENCIA: PWC4011: Unable to set request character encoding to UTF-8 from context /sistemaGestionMemorandos, because request parameters have already been read, or ServletRequest.getReader() has already been called
+INFO: Server shutdown initiated
+INFO: RAR7094: __ds_jdbc_ra shutdown successful.
+INFO: JMXStartupService: Stopped JMXConnectorServer: service:jmx:rmi://WorkGroup-PC:8686/jndi/rmi://WorkGroup-PC:8686/jmxrmi
+INFO: JMXStartupService and JMXConnectors have been shut down.
+INFO: Shutdown procedure finished
+29/11/2012 12:56:09 PM com.sun.enterprise.admin.launcher.GFLauncherLogger info
+INFO: JVM invocation command line:
+C:\Program Files\Java\jdk1.6.0_37\bin\java.exe
+-cp
+C:/glassfish/glassfishv3/glassfish/modules/glassfish.jar
+-XX:+UnlockDiagnosticVMOptions
+-XX:MaxPermSize=192m
+-XX:NewRatio=2
+-XX:+LogVMOutput
+-XX:LogFile=C:\glassfish\glassfishv3\glassfish\domains\domain1/logs/jvm.log
+-Xmx512m
+-javaagent:C:/glassfish/glassfishv3/glassfish/lib/monitor/btrace-agent.jar=unsafe=true,noServer=true
+-client
+-Dosgi.shell.telnet.maxconn=1
+-Djdbc.drivers=org.apache.derby.jdbc.ClientDriver
+-Dfelix.fileinstall.dir=C:\glassfish\glassfishv3\glassfish/modules/autostart/
+-Djavax.net.ssl.keyStore=C:\glassfish\glassfishv3\glassfish\domains\domain1/config/keystore.jks
+-Dosgi.shell.telnet.port=6666
+-Djava.security.policy=C:\glassfish\glassfishv3\glassfish\domains\domain1/config/server.policy
+-Dfelix.fileinstall.poll=5000
+-Dcom.sun.aas.instanceRoot=C:\glassfish\glassfishv3\glassfish\domains\domain1
+-Dcom.sun.enterprise.config.config_environment_factory_class=com.sun.enterprise.config.serverbeans.AppserverConfigEnvironmentFactory
+-Dosgi.shell.telnet.ip=127.0.0.1
+-Djava.endorsed.dirs=C:\glassfish\glassfishv3\glassfish/modules/endorsed;C:\glassfish\glassfishv3\glassfish/lib/endorsed
+-Dcom.sun.aas.installRoot=C:\glassfish\glassfishv3\glassfish
+-Djava.ext.dirs=C:\Program Files\Java\jdk1.6.0_37/lib/ext;C:\Program Files\Java\jdk1.6.0_37/jre/lib/ext;C:\glassfish\glassfishv3\glassfish\domains\domain1/lib/ext
+-Dfelix.fileinstall.bundles.new.start=true
+-Djavax.net.ssl.trustStore=C:\glassfish\glassfishv3\glassfish\domains\domain1/config/cacerts.jks
+-Dcom.sun.enterprise.security.httpsOutboundKeyAlias=s1as
+-Djava.security.auth.login.config=C:\glassfish\glassfishv3\glassfish\domains\domain1/config/login.conf
+-DANTLR_USE_DIRECT_CLASS_LOADING=true
+-Dfelix.fileinstall.debug=1
+-Dorg.glassfish.web.rfc2109_cookie_names_enforced=false
+-Djava.library.path=C:/glassfish/glassfishv3/glassfish/lib;C:/Program Files/Java/jdk1.6.0_37/bin;C:/Windows/Sun/Java/bin;C:/Windows/System32;C:/Windows;C:/Program Files/Java/jre6/bin/client;C:/Program Files/Java/jre6/bin;C:/Program Files/Java/jre6/lib/i386;C:/Windows/System32/wbem;C:/Windows/System32/WindowsPowerShell/v1.0;C:/Program Files/Rational/Common;C:/glassfish/glassfishv3/glassfish/%JAVA_HOME%/bin;C:/Users/WorkGroup/eclipse;C:/glassfish/glassfishv3/glassfish
+com.sun.enterprise.glassfish.bootstrap.ASMain
+-domainname
+domain1
+-asadmin-args
+start-domain,,,--domaindir,,,C:\glassfish\glassfishv3\glassfish\domains,,,--debug=false,,,--verbose=false,,,domain1
+-instancename
+server
+-verbose
+false
+-debug
+false
+-asadmin-classpath
+C:/glassfish/glassfishv3/glassfish/modules/admin-cli.jar
+-asadmin-classname
+com.sun.enterprise.admin.cli.AsadminMain
+-upgrade
+false
+-domaindir
+C:/glassfish/glassfishv3/glassfish/domains/domain1
+-read-stdin
+true
+29/11/2012 12:56:09 PM com.sun.enterprise.admin.launcher.GFLauncherLogger info
+INFO: Successfully launched in 17 msec.
+
+INFO: Running GlassFish Version: GlassFish Server Open Source Edition 3.0.1 (build 22)
+
+INFO: Perform lazy SSL initialization for the listener 'http-listener-2'
+INFO: Starting Grizzly Framework 1.9.18-o - Thu Nov 29 12:56:16 COT 2012
+INFO: Starting Grizzly Framework 1.9.18-o - Thu Nov 29 12:56:16 COT 2012
+
+INFO: Grizzly Framework 1.9.18-o started in: 386ms listening on port 3700
+INFO: Grizzly Framework 1.9.18-o started in: 416ms listening on port 4848
+INFO: Grizzly Framework 1.9.18-o started in: 362ms listening on port 7676
+INFO: Grizzly Framework 1.9.18-o started in: 475ms listening on port 8080
+INFO: Grizzly Framework 1.9.18-o started in: 427ms listening on port 8181
+
+INFO: Using com.sun.enterprise.transaction.jts.JavaEETransactionManagerJTSDelegate as the delegate
+
+INFO: SEC1002: Security Manager is OFF.
+
+INFO: Security startup service called
+INFO: SEC1143: Loading policy provider com.sun.enterprise.security.provider.PolicyWrapper.
+INFO: Realm admin-realm of classtype com.sun.enterprise.security.auth.realm.file.FileRealm successfully created.
+INFO: Realm file of classtype com.sun.enterprise.security.auth.realm.file.FileRealm successfully created.
+INFO: Realm certificate of classtype com.sun.enterprise.security.auth.realm.certificate.CertificateRealm successfully created.
+INFO: Security service(s) started successfully....
+
+INFO: Created HTTP listener http-listener-1 on port 8080
+INFO: Created HTTP listener http-listener-2 on port 8181
+INFO: Created HTTP listener admin-listener on port 4848
+INFO: Created virtual server server
+INFO: Created virtual server server
+INFO: Created virtual server __asadmin
+INFO: Created virtual server __asadmin
+INFO: Created virtual server __asadmin
+
+INFO: Virtual server server loaded system default web module
+INFO: Virtual server server loaded system default web module
+
+INFO: Inicializando Mojarra 2.0.2 (FCS b10) para el contexto '/sistemaGestionMemorandos'
+
+INFO: Running on PrimeFaces 3.4.2
+
+INFO: Loading application sistemaGestionMemorandos at /sistemaGestionMemorandos
+INFO: Loading application sistemaGestionMemorandos at /sistemaGestionMemorandos
+INFO: Loading application sistemaGestionMemorandos at /sistemaGestionMemorandos
+INFO: Loading sistemaGestionMemorandos Application done is 9268 ms
+
+INFO: Hibernate Validator bean-validator-3.0-JBoss-4.0.2
+INFO: Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+
+INFO: Portable JNDI names for EJB TipoDAO : [java:global/Proyecto_Mercado/TipoDAO, java:global/Proyecto_Mercado/TipoDAO!dao.TipoDAO]
+INFO: Portable JNDI names for EJB VentaDAO : [java:global/Proyecto_Mercado/VentaDAO!dao.VentaDAO, java:global/Proyecto_Mercado/VentaDAO]
+INFO: Portable JNDI names for EJB ProductoDAO : [java:global/Proyecto_Mercado/ProductoDAO!dao.ProductoDAO, java:global/Proyecto_Mercado/ProductoDAO]
+INFO: Portable JNDI names for EJB Venta_productoDAO : [java:global/Proyecto_Mercado/Venta_productoDAO!dao.Venta_productoDAO, java:global/Proyecto_Mercado/Venta_productoDAO]
+INFO: Portable JNDI names for EJB VendedorDAO : [java:global/Proyecto_Mercado/VendedorDAO!dao.VendedorDAO, java:global/Proyecto_Mercado/VendedorDAO]
+INFO: Portable JNDI names for EJB ClienteDAO : [java:global/Proyecto_Mercado/ClienteDAO, java:global/Proyecto_Mercado/ClienteDAO!dao.ClienteDAO]
+
+INFO: JTS5014: Recoverable JTS instance, serverId = [3700]
+
+INFO: Portable JNDI names for EJB MercadoEJB : [java:global/Proyecto_Mercado/MercadoEJB!negocio.MercadoEJBRemote, java:global/Proyecto_Mercado/MercadoEJB!negocio.MercadoEJB]
+INFO: Glassfish-specific (Non-portable) JNDI names for EJB MercadoEJB : [negocio.MercadoEJBRemote#negocio.MercadoEJBRemote, negocio.MercadoEJBRemote]
+INFO: Portable JNDI names for EJB CiudadDAO : [java:global/Proyecto_Mercado/CiudadDAO, java:global/Proyecto_Mercado/CiudadDAO!dao.CiudadDAO]
+
+INFO: Inicializando Mojarra 2.0.2 (FCS b10) para el contexto '/Proyecto_Mercado'
+
+INFO: Running on PrimeFaces 3.1.1
+INFO: Loading application Proyecto_Mercado at /Proyecto_Mercado
+INFO: Loading application Proyecto_Mercado at /Proyecto_Mercado
+INFO: Loading application Proyecto_Mercado at /Proyecto_Mercado
+INFO: Loading Proyecto_Mercado Application done is 11713 ms
+
+INFO: Portable JNDI names for EJB GeneroPeliDAO : [java:global/Videotienda/GeneroPeliDAO!dao.GeneroPeliDAO, java:global/Videotienda/GeneroPeliDAO]
+INFO: Portable JNDI names for EJB VendedorDAO : [java:global/Videotienda/VendedorDAO, java:global/Videotienda/VendedorDAO!dao.VendedorDAO]
+INFO: Portable JNDI names for EJB VideotiendaBean : [java:global/Videotienda/VideotiendaBean!negocio.VideotiendaBeanRemote, java:global/Videotienda/VideotiendaBean!negocio.VideotiendaBean]
+INFO: Glassfish-specific (Non-portable) JNDI names for EJB VideotiendaBean : [negocio.VideotiendaBeanRemote#negocio.VideotiendaBeanRemote, negocio.VideotiendaBeanRemote]
+
+INFO: Portable JNDI names for EJB PrestamoDAO : [java:global/Videotienda/PrestamoDAO, java:global/Videotienda/PrestamoDAO!dao.PrestamoDAO]
+INFO: Portable JNDI names for EJB ClienteDAO : [java:global/Videotienda/ClienteDAO, java:global/Videotienda/ClienteDAO!dao.ClienteDAO]
+INFO: Portable JNDI names for EJB CiudadDAO : [java:global/Videotienda/CiudadDAO!dao.CiudadDAO, java:global/Videotienda/CiudadDAO]
+INFO: Portable JNDI names for EJB PeliculaDAO : [java:global/Videotienda/PeliculaDAO!dao.PeliculaDAO, java:global/Videotienda/PeliculaDAO]
+INFO: Inicializando Mojarra 2.0.2 (FCS b10) para el contexto '/Videotienda'
+
+INFO: Loading application Videotienda at /Videotienda
+INFO: Loading application Videotienda at /Videotienda
+INFO: Loading application Videotienda at /Videotienda
+INFO: Loading Videotienda Application done is 1743 ms
+INFO: GlassFish Server Open Source Edition 3.0.1 (22) startup time : Felix(4326ms) startup services(24402ms) total(28728ms)
+
+INFO: Binding RMI port to *:8686
+INFO: Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+
+INFO: [Thread[GlassFish Kernel Main Thread,5,main]] started
+
+INFO: {felix.fileinstall.poll (ms) = 5000, felix.fileinstall.dir = C:\glassfish\glassfishv3\glassfish\modules\autostart, felix.fileinstall.debug = 1, felix.fileinstall.bundles.new.start = true, felix.fileinstall.tmpdir = C:\Users\WORKGR~1\AppData\Local\Temp\fileinstall--3061127622179363645, felix.fileinstall.filter = null}
+INFO: {felix.fileinstall.poll (ms) = 5000, felix.fileinstall.dir = C:\glassfish\glassfishv3\glassfish\domains\domain1\autodeploy\bundles, felix.fileinstall.debug = 1, felix.fileinstall.bundles.new.start = true, felix.fileinstall.tmpdir = C:\Users\WORKGR~1\AppData\Local\Temp\fileinstall--499185583671387211, felix.fileinstall.filter = null}
+INFO: JMXStartupService: Started JMXConnector, JMXService URL = service:jmx:rmi://WorkGroup-PC:8686/jndi/rmi://WorkGroup-PC:8686/jmxrmi
+
+INFO: Inicializando Mojarra 2.0.2 (FCS b10) para el contexto '/sistemaGestionMemorandos'
+
+INFO: Running on PrimeFaces 3.4.2
+INFO: Loading application sistemaGestionMemorandos at /sistemaGestionMemorandos
+INFO: Loading application sistemaGestionMemorandos at /sistemaGestionMemorandos
+INFO: Loading application sistemaGestionMemorandos at /sistemaGestionMemorandos
+INFO: sistemaGestionMemorandos was successfully deployed in 4.163 milliseconds.
+
+INFO: Updating configuration from org.apache.felix.fileinstall-autodeploy-bundles.cfg
+INFO: Installed C:\glassfish\glassfishv3\glassfish\modules\autostart\org.apache.felix.fileinstall-autodeploy-bundles.cfg
+INFO: {felix.fileinstall.poll (ms) = 5000, felix.fileinstall.dir = C:\glassfish\glassfishv3\glassfish\domains\domain1\autodeploy\bundles, felix.fileinstall.debug = 1, felix.fileinstall.bundles.new.start = true, felix.fileinstall.tmpdir = C:\Users\WORKGR~1\AppData\Local\Temp\fileinstall-8911684465849320738, felix.fileinstall.filter = null}
+
+INFO: Total number of available updates : 49
+INFO: Number of available updates since Wed Nov 28 09:35:27 COT 2012 : 0

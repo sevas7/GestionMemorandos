@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="templateSGM.xhtml">
+	<ui:define name="title">Iniciar Sesión</ui:define>
+	<ui:define name="centro">
+		
+			<br /><br /><br /><br />
+			<center>
+			<p:panel header="Login" style="width:300px">
+			<h:form id="login">
+				<h:panelGrid columns="1">
+					<h:outputText value="Usuario:* " />
+					<p:inputText id="usuario" value="#{loginBean.username}"
+						required="true" requiredMessage="Es necesario ingresar un nombre de usuario" /> 
+					<!--  <p:message for="usuario" /> -->
+					<h:outputText value="Contraseña:* " />
+					<p:password id="password" value="#{loginBean.pass}"
+						required="true" requiredMessage="Debe ingresar una contraseña" />
+					<!--  <p:message for="password" /> -->
+				</h:panelGrid>
+				<br />
+					<p:commandButton id="loging" value="Ingresar"
+						style="width:150px;border: none;"
+						action="#{loginBean.verificarUsuario}" ajax="false" />
+				
+				<br />
+				<p:messages showDetail="false" />
+			</h:form>
+			</p:panel>
+			<h:form id="olvidoC">
+				<p:commandLink id="olvidoContrasenia"
+					style="margin-right:20px;font-size: 0.9em"
+					action="olvidoContrasenia.xhtml" ajax="false" >
+					<h:outputText value="¿Olvidaste tu contraseña?" />
+				</p:commandLink>
+			</h:form>
+			</center>
+	</ui:define>
+
+</ui:composition>
+</html>

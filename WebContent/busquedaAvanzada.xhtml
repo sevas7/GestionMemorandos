@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+</head>
+
+<ui:composition template="templateSGM.xhtml">
+
+	<ui:define name="title">Resultado Búsqueda</ui:define>
+
+	<ui:define name="west">
+		<h:form id="izquierda">
+			<h:panelGrid columns="1">
+				<p:commandButton value="Recibidos"
+					style="width:140px;height:35px;font-size: 0.9em"
+					action="inicioJefe.xhtml" ajax="false" />
+				<p:commandButton value="Enviados"
+					style="width:140px;height:35px;font-size: 0.9em"
+					action="inicioJefeBSalida.xhtml" ajax="false" />
+				<p:commandButton value="Registrados"
+					style="width:140px;height:35px;font-size: 0.9em"
+					action="inicioJefeBRegistrados.xhtml" ajax="false" />
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="centro">
+		<p:layout>
+			<p:layoutUnit position="north" resizable="false" closable="false"
+				collapsible="false" size="45">
+				<h:form id="norteJefe">
+					<div style="float: right">
+						<p:menuButton value="#{loginBean.contacto.nombre}">
+							<p:menuitem value=" Ayuda" icon="ui-icon-help"
+								style="font-size: 0.8em" />
+							<p:menuitem value=" Cambiar Password" icon="ui-icon-key"
+								style="font-size: 0.8em" action="camPW.xhtml" ajax="false" />
+							<p:menuitem value=" Cerrar Sesión" icon="ui-icon-circle-close"
+								style="font-size: 0.8em" action="#{loginBean.cerrarSesion}"
+								ajax="false" />
+						</p:menuButton>
+					</div>
+
+					<div style="float: left">
+						<p:commandButton value="Atrás" id="atras"
+							icon="ui-icon-arrowthick-1-w" action="inicioJefe.xhtml"
+							ajax="false" />
+					</div>
+				</h:form>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center">
+
+				<h:form id="form">
+					<p:growl id="growl" sticky="true" />
+
+					<h:panelGrid columns="2">
+
+						<h:outputText value="ID: " />
+						<p:inputText id="idDocumento"
+							value="#{busquedaBean.comunicacion.idDocumento}" />
+							
+						<h:outputText value="Para: " />
+						<p:inputText id="destinatario"
+							value="#{busquedaBean.destinatarios}" />
+							
+						<h:outputText value="De: " />
+						<p:inputText id="remitente"
+							value="#{busquedaBean.comunicacion.contacto.nombre}" />
+
+						<h:outputText value="Asunto: " />
+						<p:inputText id="asunto"
+							value="#{busquedaBean.comunicacion.asunto}" />
+
+						<h:outputText value="Bandeja " />
+						<p:selectOneMenu value="#{busquedaBean.bandeja}"
+							id="bandeja" required="true" style="width:400px">
+							<f:selectItem itemLabel="Recibidos" itemValue="Recibidos" />
+							<f:selectItem itemLabel="Enviados" itemValue="Enviados" />
+							<f:selectItem itemLabel="Registrados" itemValue="Registrados" />
+							<f:selectItem itemLabel="Elaboracion" itemValue="Elaboracion" />
+							<f:selectItem itemLabel="Construccion" itemValue="Construccion" />
+							<f:selectItem itemLabel="Redaccion" itemValue="Redaccion" />
+						</p:selectOneMenu>
+
+						<h:outputText value="Palabras Clave: " />
+						<p:inputText id="pClave"
+							value="#{busquedaBean.palabraClave}" />
+
+						<h:outputText value="Fecha: " />
+						<p:inputText id="fecha"
+							value="#{comunicacionBean.comunicacion.fechaCreacion}" />
+
+					</h:panelGrid>
+					<br />
+					<center>
+						<p:commandButton value="Buscar"
+							action="#{busquedaBean.buscarComunicacionAvanzada}"
+							id="busquedaAvanzada" icon="ui-icon-search" ajax="false"
+							update="growl" />
+					</center>
+					<p:messages showDetail="false" />
+
+
+				</h:form>
+			</p:layoutUnit>
+		</p:layout>
+	</ui:define>
+</ui:composition>
+</html>

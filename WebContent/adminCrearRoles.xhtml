@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="inicioAdmin.xhtml">
+	<ui:define name="centroAdmin">
+
+		<br />
+		<br />
+		
+			<p:panel header="Nuevo Rol" style="width:650px" >
+				<h:form id="registrarRol">
+					<p:growl id="growl" showDetail="false" sticky="true" />
+					<h:panelGrid columns="2">
+
+						<h:outputText value="Nombre: " />
+						<p:selectOneMenu value="#{administracionBean.rol.nombre}"
+							id="nombre" required="true" style="width:400px">
+							<f:selectItem itemLabel="Auxiliar" itemValue="Auxiliar" />
+							<f:selectItem itemLabel="Decano" itemValue="Decano" />
+							<f:selectItem itemLabel="Director" itemValue="Director" />
+							<f:selectItem itemLabel="Profesor" itemValue="Profesor" />
+							<f:selectItem itemLabel="Secretaria" itemValue="Secretaria" />
+							<f:selectItem itemLabel="Vicerrector" itemValue="Vicerrector" />
+						</p:selectOneMenu>
+
+						<h:outputText value="Descripción: " />
+						<p:inputText id="descripcion"
+							value="#{administracionBean.rol.descripcion}" required="true"
+							style="width:392px" />
+
+						<h:outputText value="Unidad Organizacional" />
+						<p:selectOneMenu
+							value="#{administracionBean.rol.unidadorganizacional}"
+							effect="fade" required="true" style="width:400px">
+							<f:selectItems
+								value="#{administracionBean.unidadesOrganizacionales}" var="uo"
+								itemLabel="#{uo.nombre}" id="unidad" /> 
+							<f:converter converterId="selectItemObjectConverter"></f:converter>
+						</p:selectOneMenu>
+
+					</h:panelGrid>
+					<br />
+					<center>
+						<p:commandButton value="Registrar"
+							action="#{administracionBean.registrarRol}" id="regRol"
+							icon="ui-icon-disk" ajax="false" update="growl" />
+					</center>
+					<p:messages showDetail="false"  />
+				</h:form>
+			</p:panel>
+		
+	</ui:define>
+
+</ui:composition>
+</html>

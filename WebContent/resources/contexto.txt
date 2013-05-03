@@ -1,0 +1,7 @@
+1,Ingesis,ingesis@uniquindio.edu.co,7451100,1,2,ingesis','123456','Programa Ingeniería de Sistemas'
+2,Luis Eduardo Sepulveda,lesepulveda@uniquindio.edu.co','3125342109','1','2','lesepulveda','12345','Director Ingeniería de Sistemas'
+3,Pepito Perez,peperez@uniquindio.edu.co,'201','1','2','pperez','123456','Administrador'
+4,Luz Adriana Cardona,'lacardona@uniquindio.edu.co','7458912',NULL,NULL,'lacardona','lacardona','Secretaria Ingesis'
+5,Juan Pablo Giraldo,'jpgiraldo@uniquindio.edu.co','7459814',NULL,NULL,'jpgiraldo','123456','Director ingelec'
+6,Patricia Gonzales,'pgonzales@uniquindio.edu.co','7459610',NULL,NULL,'pgonzales','987654','Secretaria Ingeniería Electrónica'
+7,Faber Danilo Giraldo,'fdgiraldo@uniquindio.edu.co',NULL,'1','2','fdgiraldo','fdgiraldo','Administrador Laboratorio Ingeniería de Sistemas'
