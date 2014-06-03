@@ -65,9 +65,9 @@ public class ReporteBean {
 
 		//Conexión a la base de datos   
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/sysinfo", "root", "123456");
+		Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/sysinfo", "root", "12345");
 
-		File file = new File("../applications/gestionMemorandos/resources/reportes/comunicacionMEMO.jasper");
+		File file = new File("../eclipseApps/gestionMemorandos/resources/reportes/comunicacionMEMO.jasper");
 		
 		//Cargar el archivo ".jasper" en el objeto JasperReport
 		JasperReport reporte = (JasperReport) JRLoader.loadObject(file);
@@ -89,7 +89,7 @@ public class ReporteBean {
 		exporter.setParameter(JRExporterParameter.JASPER_PRINT,jasperPrint); 
 		
 		// iFrame requeire que el archivo pdf esté en el servidor de aplicaciones
-		exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File("../applications/gestionMemorandos/"+rutaCom));
+		exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File("../eclipseApps/gestionMemorandos/"+rutaCom));
 		exporter.exportReport();
 
 	}
@@ -105,9 +105,9 @@ public class ReporteBean {
 
 		//Conexión a la base de datos   
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/sysinfo", "root", "123456");
+		Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/sysinfo", "root", "12345");
 
-		File file = new File("../applications/gestionMemorandos/resources/reportes/comunicacionINTERNA.jasper");
+		File file = new File("/eclipseApps/gestionMemorandos/resources/reportes/comunicacionINTERNA.jasper");
 		
 		//Cargar el archivo ".jasper" en el objeto JasperReport
 		JasperReport reporte = (JasperReport) JRLoader.loadObject(file.getAbsoluteFile());
@@ -130,7 +130,7 @@ public class ReporteBean {
 		exporter.setParameter(JRExporterParameter.JASPER_PRINT,jasperPrint); 
 		
 		// iFrame requeire que el archivo pdf esté en el servidor de aplicaciones
-		exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File("../applications/gestionMemorandos/"+rutaCom));
+		exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File("C:/"+rutaCom));
 		exporter.exportReport();
 
 	}

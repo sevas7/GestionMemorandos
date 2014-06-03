@@ -21,5 +21,6 @@
 
  </jdbc-connection-pool>
  
+ <jdbc-resource enabled="true" jndi-name="jdbc/myDatasource" object-type="user" pool-name="MySql_sysinfo_rootPool"/>
 </resources>
 
